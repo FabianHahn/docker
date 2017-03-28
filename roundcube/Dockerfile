@@ -11,8 +11,19 @@ RUN apt-key adv --keyserver hkp://pgp.mit.edu:80 --recv-keys 573BFD6B3D8FBC64107
 		ca-certificates \
 		net-tools \
 		iputils-ping \
+		wget \
 		nginx \
-		php-fpm
+		sqlite3 \
+		php-fpm \
+		php-pspell \
+		php-curl \
+		php-pear \
+		php-sqlite3 \
+		php-mbstring
+
+RUN mkdir -p /usr/local/share/ca-certificates
+COPY ca.crt /usr/local/share/ca-certificates/smf68.crt
+RUN update-ca-certificates
 
 RUN rm /etc/nginx/conf.d/default.conf
 RUN mkdir -p /etc/nginx/available.d
@@ -20,7 +31,14 @@ COPY nginx-roundcube.conf /etc/nginx/available.d/
 RUN ln -s /etc/nginx/available.d/nginx-roundcube.conf /etc/nginx/conf.d/
 
 RUN mkdir -p /var/www/htdocs
-COPY index.php /var/www/htdocs/index.php
+RUN wget -O /tmp/roundcube.tar.gz https://github.com/roundcube/roundcubemail/releases/download/1.2.4/roundcubemail-1.2.4-complete.tar.gz \
+	&& tar xfz /tmp/roundcube.tar.gz -C /var/www/htdocs --strip-components=1 \
+	&& chown -R www-data:www-data /var/www/htdocs
+COPY config.inc.php /var/www/htdocs/config/config.inc.php
+RUN mkdir -p /var/db/roundcube \
+	&& chown -R www-data:www-data /var/db/roundcube \
+	&& chmod 777 /var/db/roundcube
+VOLUME /var/db
 
 COPY php.ini /etc/php/7.0/fpm/php.ini
 COPY php-fpm.conf /etc/php/7.0/fpm/php-fpm.conf
