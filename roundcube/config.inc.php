@@ -37,7 +37,14 @@ $config['db_dsnw'] = 'sqlite:////var/db/roundcube/roundcube.db?mode=0646';
 // %d - domain (http hostname $_SERVER['HTTP_HOST'] without the first part)
 // %s - domain name after the '@' from e-mail address provided at login screen
 // For example %n = mail.domain.tld, %t = domain.tld
-$config['default_host'] = 'tls://mail.smf68.ch';
+$config['default_host'] = 'tls://mail';
+$config['imap_conn_options'] = array(
+	'ssl' => array(
+		'verify_peer'  => false,
+		'verify_peer_name'  => false,
+		'allow_self_signed' => true,
+	),
+);
 
 // SMTP server host (for sending mails).
 // To use SSL/TLS connection, enter hostname with prefix ssl:// or tls://
@@ -49,7 +56,14 @@ $config['default_host'] = 'tls://mail.smf68.ch';
 // %d - domain (http hostname $_SERVER['HTTP_HOST'] without the first part)
 // %z - IMAP domain (IMAP hostname without the first part)
 // For example %n = mail.domain.tld, %t = domain.tld
-$config['smtp_server'] = 'tls://mail.smf68.ch';
+$config['smtp_server'] = 'tls://mail';
+$config['smtp_conn_options'] = array(
+	'ssl' => array(
+		'verify_peer'  => false,
+		'verify_peer_name'  => false,
+		'allow_self_signed' => true,
+	),
+);
 
 // SMTP port (default is 25; use 587 for STARTTLS or 465 for the
 // deprecated SSL over SMTP (aka SMTPS))
@@ -68,7 +82,7 @@ $config['smtp_pass'] = '%p';
 $config['support_url'] = '';
 
 // Name your service. This is displayed on the login screen and in the window title
-$config['product_name'] = 'poliwhirl.hahn.graphics webmail';
+$config['product_name'] = 'mail.hahn.graphics webmail';
 
 // this key is used to encrypt the users imap password which is stored
 // in the session record (and the client cookie if remember password is enabled).
@@ -85,5 +99,5 @@ $config['plugins'] = array(
 // skin name: folder from skins/
 $config['skin'] = 'larry';
 
-$config['log_driver'] = 'syslog';
+$config['log_driver'] = 'file';
 

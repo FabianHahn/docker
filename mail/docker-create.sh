@@ -1,6 +1,7 @@
 #!/bin/bash
 docker create \
 	-p 25:25 \
+	-p 143:143 \
 	-p 587:587 \
 	-p 993:993 \
 	--name mail \
