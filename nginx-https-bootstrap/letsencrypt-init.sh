@@ -3,7 +3,8 @@ echo "Creating certificate..."
 letsencrypt certonly \
 	--webroot -w /var/www/ \
 	-d poliwhirl.hahn.graphics \
-	--text --non-interactive --agree-tos \
+	-d mail.hahn.graphics \
+	--text --expand --non-interactive --agree-tos \
 	--email fabian@hahn.graphics
 
 if [ ! -f /etc/letsencrypt/dhparam.pem ]; then
