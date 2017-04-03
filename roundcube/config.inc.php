@@ -74,7 +74,7 @@ $config['product_name'] = 'poliwhirl.hahn.graphics webmail';
 // in the session record (and the client cookie if remember password is enabled).
 // please provide a string of exactly 24 chars.
 // YOUR KEY MUST BE DIFFERENT THAN THE SAMPLE VALUE FOR SECURITY REASONS
-$config['des_key'] = '-jU8/3|d#2la*?sdf kwieU2';
+require '/etc/roundcube/des_key.inc.php';
 
 // List of active plugins (in plugins/ directory)
 $config['plugins'] = array(

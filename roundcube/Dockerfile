@@ -39,6 +39,8 @@ RUN mkdir -p /var/db/roundcube \
 	&& chown -R www-data:www-data /var/db/roundcube \
 	&& chmod 777 /var/db/roundcube
 VOLUME /var/db
+RUN mkdir -p /etc/roundcube
+VOLUME /etc/roundcube
 
 COPY php.ini /etc/php/7.0/fpm/php.ini
 COPY php-fpm.conf /etc/php/7.0/fpm/php-fpm.conf
