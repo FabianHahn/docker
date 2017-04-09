@@ -10,6 +10,10 @@ docker create \
 	-v /root/volume/maildata:/var/mail \
 	-v /root/volume/mailstate:/var/mail-state \
 	-v /root/volume/mailconfig:/tmp/docker-mailserver \
+	-v /root/volume/mailconfig/dovecot/10-mail.conf:/etc/dovecot/conf.d/10-mail.conf \
+	-v /root/volume/mailconfig/dovecot/20-imap.conf:/etc/dovecot/conf.d/20-imap.conf \
+	-v /root/volume/mailconfig/dovecot/90-quota.conf:/etc/dovecot/conf.d/90-quota.conf \
+	-v /root/volume/mailconfig/dovecot/quota-warning.sh:/usr/local/bin/quota-warning.sh \
 	--env ENABLE_SPAMASSASSIN=1 \
 	--env ENABLE_CLAMAV=1 \
 	--env ENABLE_FAIL2BAN=1 \
