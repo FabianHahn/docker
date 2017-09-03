@@ -15,7 +15,7 @@ docker create \
 	-v /root/volume/mailconfig/dovecot/90-quota.conf:/etc/dovecot/conf.d/90-quota.conf \
 	-v /root/volume/mailconfig/dovecot/quota-warning.sh:/usr/local/bin/quota-warning.sh \
 	--env ENABLE_SPAMASSASSIN=1 \
-	--env ENABLE_CLAMAV=1 \
+	--env ENABLE_CLAMAV=0 \
 	--env ENABLE_FAIL2BAN=1 \
 	--env ENABLE_POSTGREY=1 \
 	--env SSL_TYPE=letsencrypt \
