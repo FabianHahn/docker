@@ -24,7 +24,7 @@ COPY index.html /var/www/htdocs/index.html
 
 RUN mkdir -p /var/www/.well-known
 COPY letsencrypt-renew.sh /
-RUN ln -s /letsencrypt-renew.sh /etc/cron.daily/
+RUN ln -s /letsencrypt-renew.sh /etc/cron.daily/letsencrypt-renew
 VOLUME /etc/letsencrypt
 
 RUN mkdir /etc/service/nginx
