@@ -21,4 +21,4 @@ docker create \
 	--env SSL_TYPE=letsencrypt \
 	--env ONE_DIR=1 \
 	--cap-add NET_ADMIN \
-	tvial/docker-mailserver:2.2
+	tvial/docker-mailserver:2.3
