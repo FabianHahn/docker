@@ -1,11 +1,11 @@
-FROM phusion/baseimage:0.9.22
+FROM phusion/baseimage:0.11
 
 CMD ["/sbin/my_init"]
 
 RUN apt-get update && apt-get upgrade -y -o Dpkg::Options::="--force-confold"
 
-RUN apt-key adv --keyserver hkp://pgp.mit.edu:80 --recv-keys 573BFD6B3D8FBC641079A6ABABF5BD827BD9BF62 \
-	&& echo "deb http://nginx.org/packages/debian/ jessie nginx" >> /etc/apt/sources.list \
+RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys ABF5BD827BD9BF62 \
+	&& echo "deb http://nginx.org/packages/ubuntu/ bionic nginx" >> /etc/apt/sources.list \
 	&& apt-get update \
 	&& apt-get install --no-install-recommends --no-install-suggests -y \
 		ca-certificates \
@@ -42,10 +42,10 @@ VOLUME /var/db
 RUN mkdir -p /etc/roundcube
 VOLUME /etc/roundcube
 
-COPY php.ini /etc/php/7.0/fpm/php.ini
-COPY php-fpm.conf /etc/php/7.0/fpm/php-fpm.conf
-RUN rm /etc/php/7.0/fpm/pool.d/www.conf
-COPY php-fpm-pool.conf /etc/php/7.0/fpm/pool.d/php-fpm-pool.conf
+COPY php.ini /etc/php/7.2/fpm/php.ini
+COPY php-fpm.conf /etc/php/7.2/fpm/php-fpm.conf
+RUN rm /etc/php/7.2/fpm/pool.d/www.conf
+COPY php-fpm-pool.conf /etc/php/7.2/fpm/pool.d/php-fpm-pool.conf
 
 RUN mkdir /etc/service/php-fpm
 ADD php-fpm.sh /etc/service/php-fpm/run
