@@ -14,11 +14,19 @@ docker create \
 	-v /root/volume/mailconfig/dovecot/20-imap.conf:/etc/dovecot/conf.d/20-imap.conf \
 	-v /root/volume/mailconfig/dovecot/90-quota.conf:/etc/dovecot/conf.d/90-quota.conf \
 	-v /root/volume/mailconfig/dovecot/quota-warning.sh:/usr/local/bin/quota-warning.sh \
+	--env PFLOGSUMM_TRIGGER=logrotate \
+	--env PFLOGSUMM_RECIPIENT=fabian@hahn.graphics \
+	--env LOGWATCH_INTERVAL=weekly \
+	--env LOGWATCH_RECIPIENT=fabian@hahn.graphics \
+	--env LOGROTATE_INTERVAL=weekly \
 	--env ENABLE_SPAMASSASSIN=1 \
+	--env SPAMASSASSIN_SPAM_TO_INBOX=1 \
+	--env MOVE_SPAM_TO_JUNK=1 \
 	--env ENABLE_CLAMAV=0 \
 	--env ENABLE_FAIL2BAN=1 \
 	--env ENABLE_POSTGREY=1 \
+	--env POSTGREY_DELAY=60 \
 	--env SSL_TYPE=letsencrypt \
 	--env ONE_DIR=1 \
 	--cap-add NET_ADMIN \
-	tvial/docker-mailserver:2.3
+	tvial/docker-mailserver:release-v7.0.0
