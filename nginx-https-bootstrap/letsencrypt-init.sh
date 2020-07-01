@@ -4,6 +4,7 @@ letsencrypt certonly \
 	--webroot -w /var/www/ \
 	-d poliwhirl.hahn.graphics \
 	-d mail.hahn.graphics \
+	-d music.hahn.graphics \
 	--text --expand --non-interactive --agree-tos \
 	--email fabian@hahn.graphics
 
